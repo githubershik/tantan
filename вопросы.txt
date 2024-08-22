@@ -1,13 +1,4 @@
-var btn = document.getElementById("start");
-var card = document.getElementById("card");
-var nextS = document.getElementById("next");
-var prevS = document.getElementById("prev");
-var card_txt = document.getElementById("card-text");
-var opacity = 100;
-var second_opacity = 0;
-var not_used = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35];
-var used = [];
-var questions = ["Что из последнего ты делал(-а) в первый раз?",
+"Что из последнего ты делал(-а) в первый раз?",
 "В какой книге ты хотел(-а) бы жить?",
 "Если бы ты был животным, то кем бы ты был и почему?",
 "Что бы ты сделал(-а), если бы выиграл(-а) в лотерею?",
@@ -42,40 +33,4 @@ var questions = ["Что из последнего ты делал(-а) в пе�
 "Что тебе больше всего интересно?",
 "Когда ты был ребенком, кем ты хотел стать?",
 "Вам можно пить только то, что начинается с первой буквы вашего имени, что бы это было?",
-"На какой вопрос тебе хотелось бы узнать ответ?"];
-var text_num = Math.floor(Math.random() * 35);
-async function start(){
-    for(let i = 0; i != 20; i++){
-        let promise = new Promise((resolve, reject) => {
-            setTimeout(() => resolve((opacity-=5).toString()+"%"), 20);
-          });
-        var res = await promise;
-        //console.log(res);
-        btn.style.opacity = res.toString();
-        }
-    if (res == "0%") {
-        btn.style.display = "none";
-        card.style.display = "block";
-        nextS.style.display = "block";
-        prevS.style.display = "block";
-        card_txt.style.display = "block";
-        for(let i = 0; i != 20; i++){
-            let promise = new Promise((resolve, reject) => {
-                setTimeout(() => resolve((second_opacity+=5).toString()+"%"), 20);
-              });
-            let result = await promise;
-            //console.log(result);
-            card.style.opacity = result.toString();
-            nextS.style.opacity = result.toString();
-            prevS.style.opacity = result.toString();
-            }
-    }
-
-}
-function next(){
-
-}
-
-function prev(){
-
-}
+"На какой вопрос тебе хотелось бы узнать ответ?"

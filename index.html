@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Tantan</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <button id="start" onclick="start()">START</button>
-    <div id="card"></div>
-    <div id="next"></div>
-    <div id="prev"></div>
+    <div id="card"><span id="card-text">Какой, на первый взгляд, простой вопрос можно задать человеку,ответ на который многое расскажет о его личности?</span></div>
+    <div id="next"><img src="./images/green-arrow.svg" alt="next question" onclick="next()"></div>
+    <div id="prev"><img src="./images/red-arrow.svg" alt="previous question" onclick="prev()"></div>
     <script src="./script.js"></script>
 </body>
 </html>
