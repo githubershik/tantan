@@ -5,9 +5,10 @@ var prevS = document.getElementById("prev");
 var card_txt = document.getElementById("card-text");
 var opacity = 100;
 var second_opacity = 0;
-var not_used = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35];
 var used = [];
-var questions = ["Что из последнего ты делал(-а) в первый раз?",
+var prev_counter = 2;
+var questions = 
+["Что из последнего ты делал(-а) в первый раз?",
 "В какой книге ты хотел(-а) бы жить?",
 "Если бы ты был животным, то кем бы ты был и почему?",
 "Что бы ты сделал(-а), если бы выиграл(-а) в лотерею?",
@@ -42,8 +43,23 @@ var questions = ["Что из последнего ты делал(-а) в пе�
 "Что тебе больше всего интересно?",
 "Когда ты был ребенком, кем ты хотел стать?",
 "Вам можно пить только то, что начинается с первой буквы вашего имени, что бы это было?",
-"На какой вопрос тебе хотелось бы узнать ответ?"];
-var text_num = Math.floor(Math.random() * 35);
+"На какой вопрос тебе хотелось бы узнать ответ?"
+];
+function textGen(){
+  var text_num = Math.floor(Math.random() * 35);
+  if (prev_counter>=3) {
+    card_txt.innerText = questions[used.length-1];
+    prev_counter--;
+  }else{
+    if (used.includes(text_num)) {
+      text_num = Math.floor(Math.random() * 35);
+      console.log("repeated!");
+    }
+    used.push(text_num);
+    card_txt.innerText = questions[text_num];
+    console.log(text_num,used);
+  }
+}
 async function start(){
     for(let i = 0; i != 20; i++){
         let promise = new Promise((resolve, reject) => {
@@ -73,9 +89,13 @@ async function start(){
 
 }
 function next(){
-
+  textGen();
+  //prevS.addEventListener('click', prev());
 }
 
 function prev(){
-
+  let last = used[used.length-prev_counter];
+  console.log(last)
+  card_txt.innerText = questions[last];
+  prev_counter++;
 }
