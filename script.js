@@ -48,16 +48,18 @@ var questions =
 function textGen(){
   var text_num = Math.floor(Math.random() * 35);
   if (prev_counter>=3) {
-    card_txt.innerText = questions[used.length-1];
     prev_counter--;
+    card_txt.innerText = questions[used[used.length-prev_counter]];
   }else{
     if (used.includes(text_num)) {
       text_num = Math.floor(Math.random() * 35);
       console.log("repeated!");
+      card_txt.innerText = questions[text_num];
+    }else{
+      used.push(text_num);
+      console.log(text_num,used);
+      card_txt.innerText = questions[text_num];
     }
-    used.push(text_num);
-    card_txt.innerText = questions[text_num];
-    console.log(text_num,used);
   }
 }
 async function start(){
@@ -88,14 +90,17 @@ async function start(){
     }
 
 }
+function prev(){
+  let last = used[used.length-prev_counter];
+  console.log(last);
+  if (questions[last] == undefined) {
+    pass;
+  }else{
+  card_txt.innerText = questions[last];
+  prev_counter++;
+  }
+}
 function next(){
   textGen();
   //prevS.addEventListener('click', prev());
-}
-
-function prev(){
-  let last = used[used.length-prev_counter];
-  console.log(last)
-  card_txt.innerText = questions[last];
-  prev_counter++;
 }
