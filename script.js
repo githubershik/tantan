@@ -112,6 +112,8 @@ function next(){
       card_txt.innerText = questions[used[used.length-prev_counter]];
       counter_index--;
       counter.innerText = (counter_index).toString() + "/36";
+      console.log(prev_counter);
+      console.log(counter_index);
     }else{
       if (used.includes(text_num)) {
         text_num = Math.floor(Math.random() * 35);
