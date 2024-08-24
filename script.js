@@ -3,10 +3,14 @@ var card = document.getElementById("card");
 var nextS = document.getElementById("next");
 var prevS = document.getElementById("prev");
 var card_txt = document.getElementById("card-text");
+var counter = document.getElementById("counter-text");
+var cntr = document.getElementById("counter");
 var opacity = 100;
 var second_opacity = 0;
 var used = [];
 var prev_counter = 2;
+var counter_index = 1;
+var v = 0;
 var questions = 
 ["Что из последнего ты делал(-а) в первый раз?",
 "В какой книге ты хотел(-а) бы жить?",
@@ -45,23 +49,6 @@ var questions =
 "Вам можно пить только то, что начинается с первой буквы вашего имени, что бы это было?",
 "На какой вопрос тебе хотелось бы узнать ответ?"
 ];
-function textGen(){
-  var text_num = Math.floor(Math.random() * 35);
-  if (prev_counter>=3) {
-    prev_counter--;
-    card_txt.innerText = questions[used[used.length-prev_counter]];
-  }else{
-    if (used.includes(text_num)) {
-      text_num = Math.floor(Math.random() * 35);
-      console.log("repeated!");
-      card_txt.innerText = questions[text_num];
-    }else{
-      used.push(text_num);
-      console.log(text_num,used);
-      card_txt.innerText = questions[text_num];
-    }
-  }
-}
 async function start(){
     for(let i = 0; i != 20; i++){
         let promise = new Promise((resolve, reject) => {
@@ -77,6 +64,7 @@ async function start(){
         nextS.style.display = "block";
         prevS.style.display = "block";
         card_txt.style.display = "block";
+        cntr.style.display = "block";
         for(let i = 0; i != 20; i++){
             let promise = new Promise((resolve, reject) => {
                 setTimeout(() => resolve((second_opacity+=5).toString()+"%"), 20);
@@ -86,6 +74,7 @@ async function start(){
             card.style.opacity = result.toString();
             nextS.style.opacity = result.toString();
             prevS.style.opacity = result.toString();
+            cntr.style.opacity = result.toString();
             }
     }
 
@@ -93,14 +82,43 @@ async function start(){
 function prev(){
   let last = used[used.length-prev_counter];
   console.log(last);
-  if (questions[last] == undefined) {
+  if (counter_index == 0) {
     pass;
   }else{
-  card_txt.innerText = questions[last];
-  prev_counter++;
+    if (questions[last] == undefined){
+      v++;
+    }else{
+    card_txt.innerText = questions[last];
+    prev_counter++;
+    counter_index--;
+    counter.innerText = (counter_index).toString() + "/36";
+    }
   }
 }
 function next(){
-  textGen();
-  //prevS.addEventListener('click', prev());
+  var text_num = Math.floor(Math.random() * 35);
+  if (counter_index == 36) {
+    pass;
+  }else{
+    if (prev_counter>=3) {
+      prev_counter--;
+      card_txt.innerText = questions[used[used.length-prev_counter]];
+      counter_index--;
+      counter.innerText = (counter_index).toString() + "/36";
+    }else{
+      if (used.includes(text_num)) {
+        text_num = Math.floor(Math.random() * 35);
+        console.log("repeated!");
+        card_txt.innerText = questions[text_num];
+        counter_index++;
+        counter.innerText = (counter_index).toString() + "/36";
+      }else{
+        used.push(text_num);
+        console.log(text_num,used);
+        card_txt.innerText = questions[text_num];
+        counter_index++;
+        counter.innerText = (counter_index).toString() + "/36";
+      }
+    }
+  }
 }
