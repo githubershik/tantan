@@ -119,6 +119,7 @@ function next(){
         text_num = Math.floor(Math.random() * 35);
         console.log("repeated!");
         card_txt.innerText = questions[text_num];
+        used.push(text_num);
         counter_index++;
         counter.innerText = (counter_index).toString() + "/36";
       }else{
