@@ -110,7 +110,7 @@ function next(){
     if (prev_counter>=3) {
       prev_counter--;
       card_txt.innerText = questions[used[used.length-prev_counter]];
-      counter_index--;
+      counter_index++;
       counter.innerText = (counter_index).toString() + "/36";
       console.log(prev_counter);
       console.log(counter_index);
