@@ -122,6 +122,7 @@ function next(){
         used.push(text_num);
         counter_index++;
         counter.innerText = (counter_index).toString() + "/36";
+        console.log(used)
       }else{
         used.push(text_num);
         console.log(text_num,used);
