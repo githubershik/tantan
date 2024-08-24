@@ -49,40 +49,47 @@ var questions =
 "Вам можно пить только то, что начинается с первой буквы вашего имени, что бы это было?",
 "На какой вопрос тебе хотелось бы узнать ответ?"
 ];
-async function start(){
-    for(let i = 0; i != 20; i++){
-        let promise = new Promise((resolve, reject) => {
-            setTimeout(() => resolve((opacity-=5).toString()+"%"), 20);
-          });
-        var res = await promise;
-        //console.log(res);
-        btn.style.opacity = res.toString();
-        }
-    if (res == "0%") {
-        btn.style.display = "none";
-        card.style.display = "block";
-        nextS.style.display = "block";
-        prevS.style.display = "block";
-        card_txt.style.display = "block";
-        cntr.style.display = "block";
-        for(let i = 0; i != 20; i++){
-            let promise = new Promise((resolve, reject) => {
-                setTimeout(() => resolve((second_opacity+=5).toString()+"%"), 20);
-              });
-            let result = await promise;
-            //console.log(result);
-            card.style.opacity = result.toString();
-            nextS.style.opacity = result.toString();
-            prevS.style.opacity = result.toString();
-            cntr.style.opacity = result.toString();
-            }
-    }
 
+function onInit() {
+  let text_num = Math.floor(Math.random() * 35);
+  card_txt.innerText = questions[text_num];
+  used.push(text_num);
+}
+
+async function start(){
+  onInit()
+  for(let i = 0; i != 20; i++){
+      let promise = new Promise((resolve, reject) => {
+          setTimeout(() => resolve((opacity-=5).toString()+"%"), 20);
+        });
+      var res = await promise;
+      //console.log(res);
+      btn.style.opacity = res.toString();
+      }
+  if (res == "0%") {
+      btn.style.display = "none";
+      card.style.display = "block";
+      nextS.style.display = "block";
+      prevS.style.display = "block";
+      card_txt.style.display = "block";
+      cntr.style.display = "block";
+      for(let i = 0; i != 20; i++){
+          let promise = new Promise((resolve, reject) => {
+              setTimeout(() => resolve((second_opacity+=5).toString()+"%"), 20);
+            });
+          let result = await promise;
+          //console.log(result);
+          card.style.opacity = result.toString();
+          nextS.style.opacity = result.toString();
+          prevS.style.opacity = result.toString();
+          cntr.style.opacity = result.toString();
+          }
+  }
 }
 function prev(){
   let last = used[used.length-prev_counter];
   console.log(last);
-  if (counter_index == 0) {
+  if (counter_index == 0 || counter_index == 1) {
     pass;
   }else{
     if (questions[last] == undefined){
@@ -96,7 +103,7 @@ function prev(){
   }
 }
 function next(){
-  var text_num = Math.floor(Math.random() * 35);
+  let text_num = Math.floor(Math.random() * 35);
   if (counter_index == 36) {
     pass;
   }else{
