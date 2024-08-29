@@ -3,8 +3,6 @@ var card = document.getElementById("card");
 var nextS = document.getElementById("next");
 var prevS = document.getElementById("prev");
 var card_txt = document.getElementById("card-text");
-var counter = document.getElementById("counter-text");
-var cntr = document.getElementById("counter");
 var opacity = 100;
 var second_opacity = 0;
 var used = [];
@@ -72,7 +70,6 @@ async function start(){
       nextS.style.display = "block";
       prevS.style.display = "block";
       card_txt.style.display = "block";
-      cntr.style.display = "block";
       for(let i = 0; i != 20; i++){
           let promise = new Promise((resolve, reject) => {
               setTimeout(() => resolve((second_opacity+=5).toString()+"%"), 20);
@@ -82,7 +79,6 @@ async function start(){
           card.style.opacity = result.toString();
           nextS.style.opacity = result.toString();
           prevS.style.opacity = result.toString();
-          cntr.style.opacity = result.toString();
           }
   }
 }
@@ -98,7 +94,6 @@ function prev(){
     card_txt.innerText = questions[last];
     prev_counter++;
     counter_index--;
-    counter.innerText = (counter_index).toString() + "/36";
     }
   }
 }
@@ -111,7 +106,6 @@ function next(){
       prev_counter--;
       card_txt.innerText = questions[used[used.length-prev_counter]];
       counter_index++;
-      counter.innerText = (counter_index).toString() + "/36";
       console.log(prev_counter);
       console.log(counter_index);
     }else{
@@ -121,14 +115,12 @@ function next(){
         card_txt.innerText = questions[text_num];
         used.push(text_num);
         counter_index++;
-        counter.innerText = (counter_index).toString() + "/36";
         console.log(used);
       }else{
         used.push(text_num);
         console.log(text_num,used);
         card_txt.innerText = questions[text_num];
         counter_index++;
-        counter.innerText = (counter_index).toString() + "/36";
       }
     }
   }
