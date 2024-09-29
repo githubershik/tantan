@@ -6,7 +6,6 @@
         opacity: 0%;
     }
 }
-
 html{
     margin: 0;
     padding: 0;
@@ -57,9 +56,9 @@ html{
 }
 #next{
     margin: 20px;
-    min-width: 85px;
-    width: 10%;
-    height: 10px;
+    min-width: 75px;
+    width: 9%;
+    height: 9px;
     position: absolute;
     right: 0;
     cursor: pointer;
@@ -68,9 +67,9 @@ html{
 }
 #prev{
     margin: 20px;
-    min-width: 85px;
-    width: 10%;
-    height: 100px;
+    min-width: 75px;
+    width: 9%;
+    height: 9px;
     position: absolute;
     left: 0;
     cursor: pointer;
