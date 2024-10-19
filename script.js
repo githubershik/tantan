@@ -189,6 +189,8 @@ function prev(){
     if (questions[last] == undefined){
       v++;
     }else{
+    card.classList.add('reverse-animate-card');
+    setTimeout(()=>(card.classList.remove('reverse-animate-card')),1000);
     card_txt.innerText = questions[last];
     prev_counter++;
     counter_index--;
@@ -202,16 +204,10 @@ function next(){
   }else{
     if (prev_counter>=3) {
       prev_counter--;
-      setTimeout(() => {
-        card.classList.remove('animate-card'); // Remove the animation class after the animation ends
-      }, 1000);
       card.classList.add('reverse-animate-card');
-      setTimeout(()=>{
-        card.classList.remove('reverse-animate-card');
-      },1000);
+      setTimeout(()=>(card.classList.remove('reverse-animate-card')),1000);
       card_txt.innerText = questions[used[used.length-prev_counter]];
       counter_index++;
-      card.classList.add('animate-card'); // Add the animation class
       console.log(prev_counter);
       console.log(counter_index);
     }else{
@@ -220,14 +216,8 @@ function next(){
       }
         used.push(text_num);
         console.log(text_num,used);
-        card.classList.add('animate-card'); // Add the animation class
-        setTimeout(() => {
-          card.classList.remove('animate-card'); // Remove the animation class after the animation ends
-        }, 1000);
         card.classList.add('reverse-animate-card');
-        setTimeout(()=>{
-          card.classList.remove('reverse-animate-card');
-        },1000)
+        setTimeout(()=>(card.classList.remove('reverse-animate-card')),1000)
         card_txt.innerText = questions[text_num];
         counter_index++;
       }

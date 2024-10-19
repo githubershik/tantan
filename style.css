@@ -38,7 +38,7 @@ html{
 }
 
 .animate-card {
-    transition: transform 1s; /* Adjust the duration and timing function as needed */
+    transition: transform 1s; 
     transform: scale(1.1);
     animation: change 1s;
   }
@@ -48,7 +48,7 @@ html{
 }
 
 /*.animate-card:hover {
-    transform: scale(1.1);  Adjust the scale factor as needed 
+    transform: scale(1.1); 
   }*/
 
 #start{
